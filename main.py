@@ -68,3 +68,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# main.py
+print("SensitiveData-AI-Detector güncellendi")  # yeni satır ekle
