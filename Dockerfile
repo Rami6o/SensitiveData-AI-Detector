@@ -1,10 +1,15 @@
-FROM python:3.10-slim
+# Temel Python imajı
+FROM python:3.11-slim
 
+# Çalışma dizini
 WORKDIR /app
 
+# Gereksinimleri kopyala ve yükle
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Proje dosyalarını kopyala
 COPY . .
 
-ENTRYPOINT ["python", "main.py"]
+# Varsayılan komut
+CMD ["python", "main.py", "--help"]

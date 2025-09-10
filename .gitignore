@@ -1,8 +1,21 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.env
-venv/
-*.h5
-*.pkl
+*.sqlite3
+
+# Virtual environment
+.env/
+.venv/
+
+# Model and tokenizer (binary files)
+src/ai_model/*.h5
+src/ai_model/*.pkl
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/

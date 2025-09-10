@@ -1,0 +1,6 @@
+patterns:
+  - creditcard
+  - email
+  - iban
+report: html
+output_dir: reports/
