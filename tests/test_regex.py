@@ -1,4 +1,10 @@
 import re
+import sys
+import os
+
+# main.py kökte olduğu için testlerde path'i ekliyoruz
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from main import patterns
 
 def test_email():
