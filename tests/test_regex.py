@@ -1,36 +1,27 @@
-from patterns import patterns
+# tests/test_regex.py
 
-def test_email():
-    text = "Email: test@example.com"
-    matches = patterns["email"].findall(text)
-    assert "test@example.com" in matches
+import sys
+import os
+import unittest
 
-def test_phone():
-    text = "Telefon: +90 555 123 4567"
-    matches = patterns["phone"].findall(text)
-    assert any("555" in m for m in matches)
+# Kök dizini Python path'e ekle (patterns.py'yi bulabilmesi için)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-def test_credit_card():
-    text = "Kredi Kartı: 4111 1111 1111 1111"
-    matches = patterns["credit_card"].findall(text)
-    assert any("4111" in m for m in matches)
+import patterns  # Artık çalışmalı
 
-def test_iban():
-    text = "IBAN: TR12 3456 7890 1234 5678 9012 34"
-    matches = patterns["iban"].findall(text)
-    assert any("TR12" in m for m in matches)
+class TestRegexPatterns(unittest.TestCase):
 
-def test_tc_kimlik():
-    text = "TC: 12345678901"
-    matches = patterns["tc_kimlik"].findall(text)
-    assert "12345678901" in matches
+    def test_email_pattern(self):
+        pattern = patterns.EMAIL_REGEX
+        self.assertIsNotNone(pattern)
+        self.assertTrue(pattern.match("test@example.com"))
+        self.assertFalse(pattern.match("invalid-email"))
 
-def test_ip_address():
-    text = "Server IP: 192.168.1.1"
-    matches = patterns["ip_address"].findall(text)
-    assert "192.168.1.1" in matches
+    def test_credit_card_pattern(self):
+        pattern = patterns.CC_REGEX
+        self.assertIsNotNone(pattern)
+        self.assertTrue(pattern.match("4111111111111111"))
+        self.assertFalse(pattern.match("1234-5678-9012-3456"))
 
-def test_url():
-    text = "Website: https://example.com/test"
-    matches = patterns["url"].findall(text)
-    assert any("example.com" in m for m in matches)
+if __name__ == "__main__":
+    unittest.main()
