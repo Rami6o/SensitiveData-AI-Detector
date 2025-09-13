@@ -1,10 +1,4 @@
 import re
-import sys
-import os
-
-# main.py kökte olduğu için testlerde path'i ekliyoruz
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 from main import patterns
 
 def test_email():
@@ -41,3 +35,18 @@ def test_url():
     text = "Website: https://example.com/test"
     matches = patterns["url"].findall(text)
     assert any("example.com" in m for m in matches)
+
+def test_passport():
+    text = "Pasaport No: U1234567"
+    matches = patterns["passport"].findall(text)
+    assert "U1234567" in matches
+
+def test_driver_license():
+    text = "Ehliyet: 12345678AB"
+    matches = patterns["driver_license"].findall(text)
+    assert "12345678AB" in matches
+
+def test_plate():
+    text = "Plaka: 34 ABC 1234"
+    matches = patterns["plate"].findall(text)
+    assert "34 ABC 1234" in matches
