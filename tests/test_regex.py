@@ -1,5 +1,11 @@
 import unittest
+import sys
+import os
+
+# patterns.py kök dizinde olduğu için parent klasörü PYTHONPATH'e ekliyoruz
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import patterns
+
 
 
 class TestRegexPatterns(unittest.TestCase):
